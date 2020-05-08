@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Header from '../Header/Header'
 
 class Layout extends Component {
     constructor(props) {
@@ -8,6 +9,7 @@ class Layout extends Component {
     render() {
         return (
             <div>
+                <Header/>
                 {this.props.children}
             </div>
         )
