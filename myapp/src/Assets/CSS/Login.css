@@ -1,0 +1,25 @@
+.logincontainer{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    border: 1px solid rgb(160, 137, 137);
+    background-color: rgb(237, 240, 243);
+    border-radius: 16px;
+}
+
+.formtitle{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 2%;
+    text-align: center;
+    color: rgb(7, 7, 7);
+    font-size: xx-large;
+    font-weight: 700;
+}
+.form{
+    margin-top: 2%;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
