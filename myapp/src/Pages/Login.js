@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import '../Assets/CSS/Login.css'
 import { TextField, Button,Grid } from '@material-ui/core';
+import {Link} from 'react-router-dom'
+
 
 
 class Login extends Component {
@@ -27,6 +29,7 @@ class Login extends Component {
         {
             alert("Login Successfull")
             localStorage.setItem("login","true")
+            this.props.history.push("/")
         }else{
             alert("Login Failed")
         }
@@ -49,7 +52,7 @@ class Login extends Component {
                     <Button type="submit" fullWidth variant="contained" color="primary" style={{marginTop:"3%"}} onClick={this.onSubmitHandle}>Sign In</Button>
                     <Grid container>
                         <Grid item xs><a href="#" variant="body2">Forgot password?</a></Grid>
-                        <Grid item><a href="#" variant="body2">Don't have an account? Sign Up</a></Grid>
+                        <Grid item><Link to="/register" variant="body2">Don't have an account? Sign Up</Link></Grid>
                     </Grid>
                 </form>
 

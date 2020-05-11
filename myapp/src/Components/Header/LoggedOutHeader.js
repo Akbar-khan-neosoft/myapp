@@ -11,7 +11,7 @@ class LoggedOutHeader extends Component {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="#">Register</a>
+                        <Link class="nav-item nav-link" to="/register">Register</Link>
                         <Link class="nav-item nav-link" to="/login">SignIn</Link>
                     </div>
                 </div>
