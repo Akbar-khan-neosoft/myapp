@@ -1,6 +1,6 @@
 export const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 export const NAME_REGEX = /^[a-zA-Z '.-]+$/;
-export const MOBILE_REGEX = /^([9]{1})([234789]{1})([0-9]{8})$/;
+export const MOBILE_REGEX = /^\d{10}$/;
 
 export const customErrorMessages = {
 	name: {
@@ -13,7 +13,7 @@ export const customErrorMessages = {
 	},
 	email: {
 		valueMissing: 'Please enter email address',
-		typeMismatch: 'Invalid email address',
+		patternMismatch: 'Invalid email address',
 	},
 	password: {
 		valueMissing: 'Please enter password',

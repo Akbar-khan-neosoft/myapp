@@ -13,7 +13,7 @@ class Signup extends Component {
                 lastName: '',
                 email: '',
                 mobile: '',
-                gender: 'Male',
+                gender: 'male',
                 password: '',
                 confirmPassword: ''
             },
@@ -42,36 +42,41 @@ class Signup extends Component {
     validate=()=>{
         const{firstName,lastName,email,mobile,password,confirmPassword}=this.state.data;
         this.setState({error: { firstnameError:false,lastnameError:false,emailError:false,mobileError:false,passwordError:false,confirmpasswordError:false,errorMessage:'' }});
+        
+        // validation logic starts here , using validation.js file as validation file
 
-        if(firstName===''||NAME_REGEX.test(firstName)===false){
-            const { valueMissing, typeMismatch } = customErrorMessages.name;
-			const errorMsg = firstName === "" ? valueMissing : typeMismatch;
+        if(firstName===''||!NAME_REGEX.test(firstName)){
+            const { valueMissing, patternMismatch } = customErrorMessages.name;
+			const errorMsg = firstName === "" ? valueMissing : patternMismatch;
 			this.setState({error: { firstnameError: true, errorMessage: errorMsg}, disableButton: true });
         }
-        else  if(lastName===''||NAME_REGEX.test(lastName)===false){
-            const { valueMissing, typeMismatch } = customErrorMessages.name;
-			const errorMsg = lastName === "" ? valueMissing : typeMismatch;
+        else  if(lastName===''||!NAME_REGEX.test(lastName)){
+            const { valueMissing, patternMismatch } = customErrorMessages.name;
+			const errorMsg = lastName === "" ? valueMissing : patternMismatch;
 			this.setState({error: { lastnameError: true, errorMessage: errorMsg}, disableButton: true });
         }
-        else  if(email===''||EMAIL_REGEX.test(email)===false){
-            const { valueMissing, typeMismatch } = customErrorMessages.email;
-			const errorMsg = email === "" ? valueMissing : typeMismatch;
+        else  if(email===''||!EMAIL_REGEX.test(email)){
+            const { valueMissing, patternMismatch } = customErrorMessages.email;
+			const errorMsg = email === "" ? valueMissing : patternMismatch;
 			this.setState({error: { emailError: true, errorMessage: errorMsg}, disableButton: true });
         }
-        else  if(mobile===''||MOBILE_REGEX.test(mobile)===false){
-            const { valueMissing, typeMismatch } = customErrorMessages.mobile;
-			const errorMsg = mobile === "" ? valueMissing : typeMismatch;
+        else  if(mobile===''||!MOBILE_REGEX.test(mobile)){
+            const { valueMissing, patternMismatch } = customErrorMessages.mobile;
+			const errorMsg = mobile === "" ? valueMissing : patternMismatch;
 			this.setState({error: { mobileError: true, errorMessage: errorMsg}, disableButton: true });
         }
         else  if(password===''||password.length < 8){
-            const { valueMissing, typeMismatch } = customErrorMessages.password;
-			const errorMsg = password === "" ? valueMissing : typeMismatch;
+            const { valueMissing, patternMismatch } = customErrorMessages.password;
+			const errorMsg = password === "" ? valueMissing : patternMismatch;
 			this.setState({error: { passwordError: true, errorMessage: errorMsg}, disableButton: true });
         }
-        else  if(confirmPassword===''){
+        else  if(confirmPassword===''||confirmPassword !== password){
             const { valueMissing } = customErrorMessages.password;
-			const errorMsg = confirmPassword === "" ? valueMissing : confirmPassword !== password ? "Password Mismatched" : null;
-			this.setState({error: { passwordError: true, errorMessage: errorMsg}, disableButton: true });
+			const errorMsg = confirmPassword === "" ? valueMissing : "Password Mismatched" ;
+			this.setState({error: { confirmpasswordError: true, errorMessage: errorMsg}, disableButton: true });
+        }
+        else{
+            this.setState({disableButton:false})
         }
 
     
@@ -86,6 +91,10 @@ class Signup extends Component {
         {
             this.setState({showConfirmPassword:!this.state.showConfirmPassword})
         }
+    }
+
+    onSubmitHandle=()=>{
+        alert("submitted");
     }
 
     render() {
@@ -182,6 +191,7 @@ class Signup extends Component {
                                     row aria-label="position"
                                     aria-label="gender"
                                     name="gender"
+                                    defaultValue="male"
                                     onChange={this.onChangeHandle}
                                 >
                                     <FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -253,7 +263,7 @@ class Signup extends Component {
 								) : null}
                         </div>
                     </form>
-                    <div className="registerbutton"><button style={{width:"60%",height:"50px",marginLeft:"20%",border:"2%",backgroundColor:"rgb(37, 61, 199)",color:"White",fontSize:"30px"}} >Register</button></div>
+                    <div className="registerbutton"><button disabled={this.state.disableButton} onClick={this.onSubmitHandle} style={{width:"60%",height:"50px",marginLeft:"20%",border:"2%",backgroundColor:"rgb(37, 61, 199)",color:"White",fontSize:"30px"}} >Register</button></div>
                 </div>
             </div>
         )
