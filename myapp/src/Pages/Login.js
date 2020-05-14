@@ -51,7 +51,7 @@ class Login extends Component {
                     <TextField required margin="normal" type="password" name="password" fullWidth label="Password" variant="outlined" onChange={this.onChangeHandle} />
                     <Button type="submit" fullWidth variant="contained" color="primary" style={{marginTop:"3%"}} onClick={this.onSubmitHandle}>Sign In</Button>
                     <Grid container>
-                        <Grid item xs><a href="#" variant="body2">Forgot password?</a></Grid>
+                        <Grid item xs><Link to="/forgetpassword" variant="body2">Forgot password?</Link></Grid>
                         <Grid item><Link to="/register" variant="body2">Don't have an account? Sign Up</Link></Grid>
                     </Grid>
                 </form>

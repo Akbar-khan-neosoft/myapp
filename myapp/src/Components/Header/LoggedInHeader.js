@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import {Link,withRouter} from 'react-router-dom'
 
 
 class LoggedInHeader extends Component {
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
     }
 
     onSignoutHandle=(e)=>{
         e.preventDefault()
         localStorage.setItem("login","false")
+        this.props.history.push("/")
     }
 
     render() {
@@ -30,4 +31,4 @@ class LoggedInHeader extends Component {
     }
 }
 
-export default LoggedInHeader
+export default withRouter(LoggedInHeader)
