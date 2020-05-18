@@ -52,7 +52,7 @@ class ForgetPassword extends Component {
 
 
         return (
-            <div className="logincontainer">
+            <div className="forgetpasswordcontainer">
                 <div className="formtitle">
                     Recover Password
                 </div>
