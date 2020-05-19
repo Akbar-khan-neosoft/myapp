@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { FormControl, Select,Button, TextField,InputLabel } from '@material-ui/core'
+import { FormControl, Select, Button, TextField, InputLabel } from '@material-ui/core'
 import '../Assets/CSS/AdminAddPost.css'
+import {connect} from 'react-redux'
+import {adminaddpost} from '../Redux/Actions/AdminAddPostAction'
 
 
 
@@ -30,39 +32,55 @@ class AdminAddPost extends Component {
         }
     }
 
-    onChangeHandle=({ target: input }) => {
-        console.log("input",input.name,input.value);        
-		const data = { ...this.state.data };
-		data[input.name] = input.value;
-		this.setState({ data });
+    onChangeHandle = ({ target: input }) => {
+        console.log("input", input.name, input.value);
+        const data = { ...this.state.data };
+        data[input.name] = input.value;
+        this.setState({ data });
     }
 
-    validate=()=>{
-        const{postedBy,postCategory,postTitle,postContent}=this.state.data
-        this.setState({error:{errorMessage: '',postedByError: false,postCategoryError: false,postTitleError: false,postContentError: false}})
+    validate = () => {
+        const { postedBy, postCategory, postTitle, postContent } = this.state.data
+        this.setState({ error: { errorMessage: '', postedByError: false, postCategoryError: false, postTitleError: false, postContentError: false } })
 
-        if(postedBy === ""){
-            this.setState({error:{postedByError:true,errorMessage:"Post Owner Name Can't Be Left Blank"}})
+        if (postedBy === "") {
+            this.setState({ error: { postedByError: true, errorMessage: "Post Owner Name Can't Be Left Blank" } })
         }
-        else if(postCategory === ""){
-            this.setState({error:{postCategoryError:true,errorMessage:"Post Category Can't Be Left Blank"}})
+        else if (postCategory === "") {
+            this.setState({ error: { postCategoryError: true, errorMessage: "Post Category Can't Be Left Blank" } })
         }
-        else if(postTitle === ""){
-            this.setState({error:{postTitleError:true,errorMessage:"Post Title Can't Be Left Blank"}})
+        else if (postTitle === "") {
+            this.setState({ error: { postTitleError: true, errorMessage: "Post Title Can't Be Left Blank" } })
         }
-        else if(postContent === ""){
-            this.setState({error:{postContentError:true,errorMessage:"Post Content Can't Be Left Blank"}})
+        else if (postContent === "") {
+            this.setState({ error: { postContentError: true, errorMessage: "Post Content Can't Be Left Blank" } })
         }
-        else{
-            this.setState({disableButton:false})
+        else {
+            this.setState({ disableButton: false })
         }
+    }
+
+    onSubmitHandle= async ()=>{
+
+        const Data ={
+            postedBy: this.state.data.postedBy,
+            postCategory: this.state.data.postCategory,
+            postTitle: this.state.data.postTitle,
+            postContent: this.state.data.postContent,
+            links: this.state.data.links,
+            postLikes: this.state.data.postLikes,
+            postComments: this.state.data.postComments,
+            postDate: new Date()
+        }
+
+        await this.props.onAdminAddPost(Data)
     }
 
     render() {
         console.log(this.state.error);
-        
+
         const { errorMessage, postedByError, postCategoryError, postTitleError, postContentError } = this.state.error
-        
+
         return (
             <div className="adminaddpostscreen">
                 <div className="adminaddpostcontainer">
@@ -97,7 +115,7 @@ class AdminAddPost extends Component {
                                         onChange={this.onChangeHandle}
                                         onBlur={this.validate}
                                         inputProps={{
-                                            name:"postCategory",
+                                            name: "postCategory",
                                         }}
                                     >
                                         <option aria-label="None" value="" />
@@ -167,12 +185,12 @@ class AdminAddPost extends Component {
                                         onChange={this.onChangeHandle}
                                     />
                                 </FormControl>
-                                </div>
-                                <div className="formrow">
-                                <Button type="submit" fullWidth variant="contained" color="primary" style={{ marginTop: "3%",marginBottom:"10%" }} onClick={this.onSubmitHandle} disabled={this.state.disableButton}>Submit Post</Button>
-                                </div>
+                            </div>
+                            <div className="formrow">
+                                <Button type="submit" fullWidth variant="contained" color="primary" style={{ marginTop: "3%", marginBottom: "10%" }} onClick={this.onSubmitHandle} disabled={this.state.disableButton}>Submit Post</Button>
+                            </div>
                         </form>
-                    
+
                     </div>
                 </div>
             </div>
@@ -180,4 +198,12 @@ class AdminAddPost extends Component {
     }
 }
 
-export default AdminAddPost
+const mapStateToProps = state =>{
+    return{data:state}
+}
+
+const mapDispatchToProps = dispatch => ({
+	onAdminAddPost: data => dispatch(adminaddpost(data)),
+});
+
+export default connect(mapStateToProps,mapDispatchToProps) (AdminAddPost)
