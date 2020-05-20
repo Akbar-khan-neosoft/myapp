@@ -60,8 +60,8 @@ class AdminAddPost extends Component {
         }
     }
 
-    onSubmitHandle= async ()=>{
-
+    onSubmitHandle= async (e)=>{
+        e.preventDefault()
         const Data ={
             postedBy: this.state.data.postedBy,
             postCategory: this.state.data.postCategory,
@@ -74,10 +74,12 @@ class AdminAddPost extends Component {
         }
 
         await this.props.onAdminAddPost(Data)
+        alert(this.props.data)
+        this.props.history.push("/");
     }
 
     render() {
-        console.log(this.state.error);
+        // console.log(this.state.error);
 
         const { errorMessage, postedByError, postCategoryError, postTitleError, postContentError } = this.state.error
 

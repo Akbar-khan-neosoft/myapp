@@ -1,0 +1,17 @@
+.postsummary{
+    width: 70%;
+}
+
+.postcard{
+    background-color:white;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 3%;
+    padding-left: 5%;
+}
+
+.posttitle{
+    font-size: xx-large;
+    font-weight: 700;
+}
