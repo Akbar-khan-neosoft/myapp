@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { firebaseReducer } from 'react-redux-firebase'
 import { firestoreReducer } from 'redux-firestore'
+import AuthReducer from './AuthReducer'
 import AdminAddPostReducer from './AdminAddPostReducer'
 
 export default combineReducers({
     AdminAddPostReducer,
     firebase: firebaseReducer,
-    firestore: firestoreReducer 
+    firestore: firestoreReducer,
+    AuthReducer
  });

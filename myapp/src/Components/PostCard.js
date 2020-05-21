@@ -8,7 +8,7 @@ class PostCard extends Component {
     }
 
     render() {
-        console.log(this.props.post);
+        // console.log(this.props.post);
         const postlist = this.props.post
         return (
             <div className="postsummary">

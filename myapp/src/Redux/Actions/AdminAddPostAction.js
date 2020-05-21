@@ -6,7 +6,7 @@ const adminaddpostsuccess = data => ({ type: ADMIN_ADD_POST_SUCCESS, payload: da
 const adminaddpostfailure = error => ({ type: ADMIN_ADD_POST_FAILURE, error: error });
 
 
-export const adminaddpost = data => async (dispatch,{getfirebase,getfirestore}) =>{
+export const adminaddpost = data => async (dispatch) =>{
     console.log("inside adminaddpost");
     
     dispatch(adminaddpostrequest);
