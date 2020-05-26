@@ -105,7 +105,7 @@ class Signup extends Component {
         const{firstnameError,lastnameError,emailError,mobileError,passwordError,confirmpasswordError,errorMessage}=this.state.error;
 
 
-        console.log(this.state.data);
+        // console.log(this.state.data);
         
         return (
             <div className="signupcontainer">

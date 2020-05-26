@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { compose } from "redux"
 import { firestoreConnect } from "react-redux-firebase"
+import { FormControl, TextField} from '@material-ui/core'
+import DoubleArrowTwoToneIcon from '@material-ui/icons/DoubleArrowTwoTone';
+
 
 class AdminCommentSection extends Component{
     constructor(props){
@@ -11,10 +14,29 @@ class AdminCommentSection extends Component{
     render(){
         return(
             <div className="commentsectioncontainer">
-                <div className="addcommentsection"></div>
-                <div className="commentsection">
-
+                <div className="addcommentsection">
+                    <div className="commentbox">
+                            <FormControl fullWidth>
+                                <TextField
+                                    name="comment"
+                                    type="text"
+                                    label="Your Comment"
+                                    placeholder="Add Your Comment"
+                                    variant="outlined"
+                                    onChange={this.onChangeHandle}
+                                />
+                            </FormControl></div><div className="submitcommentbutton"><DoubleArrowTwoToneIcon/></div>
                 </div>
+                {/* <div className="commentsection">
+                {this.props.comments ? this.props.comments.map(res=>{
+                    {console.log(res)}
+                    return(
+                        <div className="comment">
+                            <span>{res.CommentBy} : </span> &nbsp;&nbsp; <span>{res.comment}</span>
+                        </div>
+                    )
+                }) : <p>no comments</p>}
+                </div> */}
             </div>
         )
     }
@@ -30,7 +52,9 @@ const mapStateToProps = (state, ownProps) => {
     console.log("post",post.postComments,id,state);
     
     return {
-        // post: post
+        comments: post.postComments,
+        commentBy : state.firebase.profile.fullName,
+        profileId: state.firebase.auth.uid
     }
 }
 
