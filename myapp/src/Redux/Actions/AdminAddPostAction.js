@@ -7,18 +7,18 @@ const adminaddpostfailure = error => ({ type: ADMIN_ADD_POST_FAILURE, error: err
 
 
 export const adminaddpost = data => async (dispatch) =>{
-    console.log("inside adminaddpost");
+    // console.log("inside adminaddpost");
     
     dispatch(adminaddpostrequest);
 
     try{
-        console.log("i am in");
+        // console.log("i am in");
         const firestore = firebase.firestore()
-        console.log("i am in 2");
+        // console.log("i am in 2");
         const res = await firestore.collection('adminPost').add({
             ...data,
         })
-        console.log("i am in 3");
+        // console.log("i am in 3");
         console.log(res);
         dispatch(adminaddpostsuccess(res));
     } catch (error) {

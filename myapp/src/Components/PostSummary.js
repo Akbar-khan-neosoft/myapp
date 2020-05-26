@@ -16,7 +16,8 @@ class PostSummary extends Component {
                         <div className="postsubdetails">
                             <span>Posted By : {post.postedBy}</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <span>Category : {post.postCategory}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span>Post Date : Date here</span>
+                            <span>Post Date : Date here</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>Post Likes : {post.postLikes}</span>
                         </div>
                     </div>
                 )

@@ -29,7 +29,7 @@ class Header extends Component {
 }
 
 const mapStateToProps =(state)=>{ 
-    console.log("stateaaa",state.firebase.auth);
+    // console.log("stateaaa",state.firebase.auth);
     return{ auth : state.firebase.auth}
 }
 

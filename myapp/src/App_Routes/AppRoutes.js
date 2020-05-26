@@ -5,6 +5,7 @@ import Login from '../Pages/Login';
 import Signup from '../Pages/Signup';
 import ForgetPassword from '../Pages/ForgetPassword';
 import AdminAddPost from '../Pages/AdminAddPost';
+import AdminPostDetails from '../Components/AdminPostDetail';
 
 function AppRoutes() {
     return (
@@ -16,6 +17,7 @@ function AppRoutes() {
             <Route exact path="/register" component={Signup} />
             <Route exact path="/forgetpassword" component={ForgetPassword}/>
             <Route exact path="/adminaddpost" component={AdminAddPost}/>
+            <Route exact path="/adminpost/:id" component={AdminPostDetails}/>
 
         </Switch>
 

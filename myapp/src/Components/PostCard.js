@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import PostSummary from "./PostSummary";
 import '../Assets/CSS/Post.css'
+import {Link} from 'react-router-dom'
 
 class PostCard extends Component {
     constructor(props) {
@@ -14,7 +15,9 @@ class PostCard extends Component {
             <div className="postsummary">
                 {postlist ? postlist.map(res => {
                     return (
+                        <Link to={"adminpost/" + res.id}>
                         <PostSummary post={res} key={res.id} />
+                        </Link>
                     )
                 }) : null}
             </div>
