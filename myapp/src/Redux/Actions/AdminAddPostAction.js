@@ -19,7 +19,7 @@ export const adminaddpost = data => async (dispatch) =>{
             ...data,
         })
         // console.log("i am in 3");
-        console.log(res);
+        // console.log(res);
         dispatch(adminaddpostsuccess(res));
     } catch (error) {
 		dispatch(adminaddpostfailure({ error }));

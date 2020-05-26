@@ -3,6 +3,8 @@ import { FormControl, TextField, RadioGroup, FormControlLabel, Radio, FormLabel,
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import '../Assets/CSS/Signup.css'
 import {EMAIL_REGEX,NAME_REGEX,MOBILE_REGEX,customErrorMessages} from '../Utils/Validation'
+import {connect} from 'react-redux'
+import {usersignup} from '../Redux/Actions/SignUpAction'
 
 class Signup extends Component {
     constructor(props) {
@@ -93,8 +95,10 @@ class Signup extends Component {
         }
     }
 
-    onSubmitHandle=()=>{
-        alert("submitted");
+    onSubmitHandle= async()=>{
+        await this.props.signup(this.state.data)
+        alert("Sign Up Success");
+        this.props.history.push("/login");
     }
 
     render() {
@@ -270,4 +274,10 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
+const mapDispatchToProps = (dispatch)=>{
+return{
+    signup : (data) =>dispatch(usersignup(data))
+}
+}
+
+export default connect(null,mapDispatchToProps)(Signup);

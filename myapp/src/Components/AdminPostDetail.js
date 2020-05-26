@@ -4,6 +4,7 @@ import { compose } from "redux"
 import { firestoreConnect } from "react-redux-firebase"
 import firebase from '../Config/FirebaseConfig'
 import "../Assets/CSS/AdminPostDetail.css"
+import AdminCommentSection from './AdminCommentSection'
 
 
 class AdminPostDetails extends Component {
@@ -52,10 +53,11 @@ class AdminPostDetails extends Component {
                         <div className="adminpostdetailcontent">* {post.postContent}</div>
                         <div className="adminpostdetaillinks"><b>Reference Link :</b> <span style={{ color: "red" }}>{post.links}</span></div>
                         <div className="adminpostdetailsbuttons">
-            <button class="btn-primary" onClick={this.likehandle} style={{ marginLeft: "1%", marginRight: "1%" }}>{this.state.showLikeDislike ? <span>Like</span> : <span>Dislike</span>} {post.postLikes}</button>
+            <button class="btn-primary" onClick={this.likehandle} style={{ marginLeft: "1%", marginRight: "1%" }}>
+                {this.state.showLikeDislike ? <span>Like</span> : <span>Dislike</span>} {post.postLikes}</button>
                             <button class="btn-primary" onClick={this.handleshowCommentSection} style={{ marginLeft: "1%", marginRight: "1%" }}>Comment section</button>
                         </div>
-                        <div className="adminpostcommentsection">{this.state.showCommentSection ? <p>commentsection</p> : null}</div>
+                        <div className="adminpostcommentsection">{this.state.showCommentSection ? <AdminCommentSection id={this.props.match.params.id}/> : null}</div>
                     </div>
                 </div>
             )

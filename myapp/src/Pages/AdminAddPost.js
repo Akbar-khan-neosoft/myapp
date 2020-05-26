@@ -33,7 +33,7 @@ class AdminAddPost extends Component {
     }
 
     onChangeHandle = ({ target: input }) => {
-        console.log("input", input.name, input.value);
+        // console.log("input", input.name, input.value);
         const data = { ...this.state.data };
         data[input.name] = input.value;
         this.setState({ data });
