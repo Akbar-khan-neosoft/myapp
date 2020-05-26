@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {Link,withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {userlogout} from '../../Redux/Actions/AuthAction'
 
 
 class LoggedInHeader extends Component {
@@ -7,9 +9,9 @@ class LoggedInHeader extends Component {
         super()
     }
 
-    onSignoutHandle=(e)=>{
+    onSignoutHandle= async (e)=>{
         e.preventDefault()
-        localStorage.setItem("login","false")
+        await this.props.onLogout();
         this.props.history.push("/")
     }
 
@@ -31,4 +33,8 @@ class LoggedInHeader extends Component {
     }
 }
 
-export default withRouter(LoggedInHeader)
+const mapDispatchToProps = (dispatch) => ({
+    onLogout: () => dispatch(userlogout())
+});
+
+export default connect(null,mapDispatchToProps)(withRouter(LoggedInHeader))

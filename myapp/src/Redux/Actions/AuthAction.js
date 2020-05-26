@@ -1,9 +1,12 @@
-import {USER_LOGIN_REQUEST,USER_LOGIN_SUCCESS,USER_LOGIN_FAILURE} from '../Constants'
+import {USER_LOGIN_REQUEST,USER_LOGIN_SUCCESS,USER_LOGIN_FAILURE,USER_LOGOUT_SUCCESS, USER_LOGOUT_FAILURE } from '../Constants'
 import firebase from '../../Config/FirebaseConfig'
 
 const userloginrequest = () => ({ type: USER_LOGIN_REQUEST });
 const userloginsuccess = () => ({ type: USER_LOGIN_SUCCESS });
 const userloginfailure = error => ({ type: USER_LOGIN_FAILURE, error: error });
+const userlogoutsuccess = () => ({ type: USER_LOGOUT_SUCCESS });
+const userlogoutfailure = error => ({ type: USER_LOGOUT_FAILURE, error: error });
+
 
 
 export const userlogin = data => async (dispatch) =>{
@@ -19,5 +22,16 @@ export const userlogin = data => async (dispatch) =>{
         dispatch(userloginsuccess());
     } catch (error) {
 		dispatch(userloginfailure({ error }));
+	}
+};
+
+export const userlogout = () => async (dispatch) =>{
+    console.log("inside logout");
+
+    try{
+       await firebase.auth().signOut()
+        dispatch(userlogoutsuccess());
+    } catch (error) {
+		dispatch(userlogoutfailure({ error }));
 	}
 };
