@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import '../Assets/CSS/Post.css'
+import moment from 'moment'
 
 
 class PostSummary extends Component {
@@ -16,8 +17,9 @@ class PostSummary extends Component {
                         <div className="postsubdetails">
                             <span>Posted By : {post.postedBy}</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <span>Category : {post.postCategory}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span>Post Date : Date here</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span>Post Likes : {post.postLikes}</span>
+                            <span>Post Date : {moment(post.postDate.toDate()).calendar()}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>Likes : {post.postLikes}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>Comments : {post.postComments.length}</span>
                         </div>
                     </div>
                 )

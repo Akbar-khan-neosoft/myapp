@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { compose } from "redux"
 import { firestoreConnect } from "react-redux-firebase"
-import { FormControl, TextField } from '@material-ui/core'
+import { FormControl, TextField,Button } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 import firebase from '../Config/FirebaseConfig'
+import moment from 'moment'
+
 import '../Assets/CSS/AdminCommentSection.css'
 
 
@@ -63,26 +66,27 @@ class AdminCommentSection extends Component {
                             />
                         </FormControl></div>
                     <div className="submitcommentbutton">
-                        <button onClick={this.onSubmitHandle} style={{backgroundColor: "rgb(37, 61, 199)" }}>Submit</button>
+                    <Button type="submit" fullWidth variant="contained" color="primary" style={{ marginTop: "2%" }} onClick={this.onSubmitHandle}>Submit Your Comment</Button>
+                        {/* <button onClick={this.onSubmitHandle} style={{backgroundColor: "rgb(37, 61, 199)" }}>Submit</button> */}
                     </div>
 
                 </div>
                 <hr></hr>
                 <div className="commentsection">
                     {this.props.comments.length !== 0 ? [this.props.comments].map(res => {
-                        { console.log(res) }
+                        // { console.log(res) }
                         return (res.map(item => {
-                            console.log(item)
+                            // console.log(item)
                             return (
                                 <div className="comment">
-                                    <span><b>{item.commentBy}</b> : </span> &nbsp;&nbsp; <span>{item.comment}</span><br></br>
-                                    <span id="commenttime">time here</span>
+                                    <span><b><Link to={"/profile/" + item.profileOfUser}>{item.commentBy}</Link></b> : </span> &nbsp;&nbsp; <span>{item.comment}</span><br></br>
+                                    <span id="commenttime">{moment(item.commenttime.toDate()).fromNow()}</span>
                                 </div>
                             )
                         })
 
                         )
-                    }) : <p>no comments</p>}
+                    }) : <div style={{textAlign:"center"}}>No Comments</div>}
                 </div>
             </div>
         )
