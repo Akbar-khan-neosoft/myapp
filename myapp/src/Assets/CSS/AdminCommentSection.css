@@ -1,0 +1,47 @@
+.commentsectioncontainer{
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border: 2px solid black;
+    
+}
+
+.addcommentsection{
+    width: 90%;
+    padding-left: 1%;
+    padding-right: 1%;
+    /* padding-top: 2%;
+    padding-bottom: 2%; */
+    display: flex;
+    flex-direction: row;
+}
+
+.commentbox{
+    width: 94%;
+}
+
+.submitcommentbutton{
+    width: 6%;
+    margin-left: 2%;
+}
+
+.commentsection{
+    width: 90%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.comment{
+    width: 100%;
+    border-bottom: 1px solid rgb(194, 180, 180);
+}
+
+#commenttime{
+    font-size: smaller;
+    font-weight: 700;
+    color: rgb(49, 49, 114);
+}
