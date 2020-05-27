@@ -7,6 +7,7 @@ import ForgetPassword from '../Pages/ForgetPassword';
 import AdminAddPost from '../Pages/AdminAddPost';
 import AdminPostDetails from '../Components/AdminPostDetail';
 import Profile from '../Pages/Profile';
+import UserAddPost from '../Pages/UserAddPost';
 
 function AppRoutes() {
     return (
@@ -20,6 +21,7 @@ function AppRoutes() {
             <Route exact path="/adminaddpost" component={AdminAddPost}/>
             <Route exact path="/adminpost/:id" component={AdminPostDetails}/>
             <Route exact path="/profile/:id" component={Profile}/>
+            <Route exact path="/useraddpost" component={UserAddPost}/>
 
         </Switch>
 

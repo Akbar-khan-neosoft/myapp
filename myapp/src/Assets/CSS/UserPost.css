@@ -1,8 +1,8 @@
-.postsummary{
+.userpostsummary{
     width: 100%;
 }
 
-.postcard{
+.userpostcard{
     background-color:white;
     width: 90%;
     margin-left: 5%;
@@ -13,12 +13,12 @@
     padding-top: 0.5%;
 }
 
-.posttitle{
+.userposttitle{
     font-size: x-large;
     font-weight: 600;
 }
 
-.postsubdetails{
+.userpostsubdetails{
     font-weight: 600;
     color: rgb(17, 1, 1);
     font-size: small;

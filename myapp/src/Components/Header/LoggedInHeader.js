@@ -26,6 +26,7 @@ class LoggedInHeader extends Component {
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <Link class="nav-item nav-link btn" to="/">Home </Link>
+                        <Link class="nav-item nav-link btn" to="/useraddpost">Add Post </Link>
                         <Link class="nav-item nav-link" to={"/profile/" + this.props.profileId}>Profile</Link>
                         <a class="nav-item nav-link btn" onClick={this.onSignoutHandle}>SignOut</a>
                     </div>
