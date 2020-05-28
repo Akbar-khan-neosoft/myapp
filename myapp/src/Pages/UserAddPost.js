@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom'
 import { FormControl, Select, Button, TextField, InputLabel } from '@material-ui/core'
 import '../Assets/CSS/AdminAddPost.css'
 import {connect} from 'react-redux'
@@ -82,7 +83,7 @@ class UserAddPost extends Component {
         //  console.log("ttttt",this.props.fullName,this.props.profileId);
 
         const { errorMessage, postCategoryError, postTitleError, postContentError } = this.state.error
-
+        if(!this.props.profileId) return <Redirect to='/login'/>
         return (
             <div className="adminaddpostscreen">
                 <div className="adminaddpostcontainer">
@@ -204,7 +205,8 @@ const mapStateToProps = state =>{
     console.log("state" ,state.firebase.auth.uid)
     return{
         fullName:state.firebase.profile.fullName,
-        profileId:state.firebase.auth.uid
+        profileId:state.firebase.auth.uid,
+
     }
 }
 

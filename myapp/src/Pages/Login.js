@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import '../Assets/CSS/Login.css'
 import { TextField, Button, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom'
@@ -43,8 +44,9 @@ class Login extends Component {
 
         // console.log(this.state.email,this.state.password);
         const { loginError } = this.props
-        console.log("error", loginError);
+        // console.log("error", loginError);
 
+        if(this.props.auth.uid) return <Redirect to='/'/>
         return (
             <div className="logincontainer">
                 <div className="formtitle">
@@ -71,7 +73,8 @@ class Login extends Component {
 const mapStateToProps = (state) => {
     // console.log("state", state.AuthReducer.error.error);
     return {
-        loginError: state.AuthReducer.error
+        loginError: state.AuthReducer.error,
+        auth: state.firebase.auth
     }
 }
 

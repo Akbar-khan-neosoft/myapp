@@ -15,10 +15,10 @@ class PostSummary extends Component {
                     <div className="postcard">
                         <div className="posttitle">{post.postTitle}</div>
                         <div className="postsubdetails">
-                            <span>Posted By : {post.postedBy}</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span>Category : {post.postCategory}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span>Post Date : {moment(post.postDate.toDate()).calendar()}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span>Likes : {post.postLikes}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>Posted By : {post.postedBy}</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>Category : {post.postCategory}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>Post Date : {moment(post.postDate.toDate()).calendar()}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>Likes : {post.postLikes}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <span>Comments : {post.postComments.length}</span>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import {Redirect} from 'react-router-dom'
 import { FormControl, TextField, RadioGroup, FormControlLabel, Radio, FormLabel, InputAdornment, IconButton, OutlinedInput, InputLabel } from '@material-ui/core'
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import '../Assets/CSS/Signup.css'
@@ -106,7 +107,7 @@ class Signup extends Component {
 
 
         // console.log(this.state.data);
-        
+        if(this.props.auth.uid) return <Redirect to='/'/>
         return (
             <div className="signupcontainer">
                 <div className="formcontainer">
@@ -274,10 +275,17 @@ class Signup extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    // console.log("state", state.AuthReducer.error.error);
+    return {
+        auth: state.firebase.auth
+    }
+}
+
 const mapDispatchToProps = (dispatch)=>{
 return{
     signup : (data) =>dispatch(usersignup(data))
 }
 }
 
-export default connect(null,mapDispatchToProps)(Signup);
+export default connect(mapStateToProps,mapDispatchToProps)(Signup);

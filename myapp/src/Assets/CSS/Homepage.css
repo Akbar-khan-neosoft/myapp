@@ -7,16 +7,15 @@
 }
 
 .PostContainer{
-    width: 65%;
+    width: 75%;
     height: 90%;
-    margin-left: 5%;
-    border: 1px solid blue;
+    margin-left: 2%;
     overflow: auto;
 }
 
 .topnavbar{
     width: 62.5%;
-    border: 1px solid red;
-    margin-left: 3.5%;
+    /* border: 1px solid red; */
+    margin-left: 5%;
     margin-bottom: 2%;
 }

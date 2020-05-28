@@ -22,6 +22,7 @@ function AppRoutes() {
             <Route exact path="/post/:data/:id" component={PostDetails}/>
             <Route exact path="/profile/:id" component={Profile}/>
             <Route exact path="/useraddpost" component={UserAddPost}/>
+            <Route exact path="/profile/post/:data/:id" component={PostDetails}/>
 
         </Switch>
 

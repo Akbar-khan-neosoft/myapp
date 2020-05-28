@@ -64,7 +64,8 @@ const mapStateToPrpos = (state) => {
 
   return { 
     adminpost: adminposts ,
-    userpost : userposts
+    userpost : userposts,
+    auth: state.firebase.auth
   }
 }
 
