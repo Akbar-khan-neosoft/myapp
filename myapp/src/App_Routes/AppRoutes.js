@@ -5,7 +5,7 @@ import Login from '../Pages/Login';
 import Signup from '../Pages/Signup';
 import ForgetPassword from '../Pages/ForgetPassword';
 import AdminAddPost from '../Pages/AdminAddPost';
-import AdminPostDetails from '../Components/AdminPostDetail';
+import PostDetails from '../Components/PostDetail';
 import Profile from '../Pages/Profile';
 import UserAddPost from '../Pages/UserAddPost';
 
@@ -19,7 +19,7 @@ function AppRoutes() {
             <Route exact path="/register" component={Signup} />
             <Route exact path="/forgetpassword" component={ForgetPassword}/>
             <Route exact path="/adminaddpost" component={AdminAddPost}/>
-            <Route exact path="/adminpost/:id" component={AdminPostDetails}/>
+            <Route exact path="/post/:data/:id" component={PostDetails}/>
             <Route exact path="/profile/:id" component={Profile}/>
             <Route exact path="/useraddpost" component={UserAddPost}/>
 

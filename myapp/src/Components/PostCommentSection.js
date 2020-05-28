@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom'
 import firebase from '../Config/FirebaseConfig'
 import moment from 'moment'
 
-import '../Assets/CSS/AdminCommentSection.css'
+import '../Assets/CSS/PostCommentSection.css'
 
 
-class AdminCommentSection extends Component {
+class PostCommentSection extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -35,7 +35,7 @@ class AdminCommentSection extends Component {
         })
 
         // console.log("commnnn",newcomments);
-            await firestore.collection('adminPost').doc(this.props.id).update({
+            await firestore.collection( this.props.data + 'Post').doc(this.props.id).update({
                 "postComments": newcomments
                 //  concat(this.props.comments,({
                 //     commentBy: this.props.commentBy,
@@ -98,7 +98,8 @@ class AdminCommentSection extends Component {
 const mapStateToProps = (state, ownProps) => {
     // console.log("abcd", state.firestore.data.adminPost,ownProps.match.params.id);
     const id = ownProps.id
-    const posts = state.firestore.data.adminPost
+    const data = ownProps.data;
+    const posts = data === "admin" ? state.firestore.data.adminPost : state.firestore.data.userPost 
     const post = posts ? posts[id] : null
     console.log("post", post.postComments, id, state);
 
@@ -112,7 +113,8 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'adminPost' }
+        { collection: 'adminPost' },
+        {collection : 'userPost'}
     ]))
-    (AdminCommentSection)
+    (PostCommentSection)
 

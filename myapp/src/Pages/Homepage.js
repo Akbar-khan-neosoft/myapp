@@ -5,7 +5,6 @@ import { firestoreConnect } from 'react-redux-firebase'
 import PostCard from '../Components/PostCard';
 import '../Assets/CSS/Homepage.css'
 import Loading from '../Components/Loading';
-import UserPostCard from '../Components/UserPost/UserPostCard';
 
 class Homepage extends Component {
 
@@ -28,8 +27,8 @@ class Homepage extends Component {
   render() {
 
     const post = this.state.showAdminPost ? 
-     this.props.adminpost ? <PostCard post={this.props.adminpost} /> : <Loading /> 
-     : this.props.adminpost ? <UserPostCard post={this.props.userpost} /> : <Loading />
+     this.props.adminpost ? <PostCard post={this.props.adminpost} postDetail="admin"/> : <Loading /> 
+     : this.props.userpost ? <PostCard post={this.props.userpost} postDetail="user"/> : <Loading />
     return (
       
         <div className="homepagecontainer">

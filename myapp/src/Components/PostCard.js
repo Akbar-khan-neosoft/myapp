@@ -15,7 +15,7 @@ class PostCard extends Component {
             <div className="postsummary">
                 {postlist ? postlist.map(res => {
                     return (
-                        <Link to={"adminpost/" + res.id} style={{textDecoration: "none"}}>
+                        <Link to={"post/" + this.props.postDetail + "/" + res.id} style={{textDecoration: "none"}}>
                         <PostSummary post={res} key={res.id} />
                         </Link>
                     )
