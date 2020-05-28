@@ -26,14 +26,25 @@ class PostCommentSection extends Component {
     onSubmitHandle = async (e) => {
         e.preventDefault();
         const firestore = firebase.firestore()
-        console.log("id", this.props.id);
-        const newcomments = this.props.comments.concat({
-            commentBy: this.props.commentBy,
-            profileOfUser: this.props.profileId,
-            commenttime: new Date(),
-            comment: this.state.comment
-        })
-
+        let newcomments;
+        // console.log("id", this.props.id);
+        if(this.props.adminAuth === "ADMIN"){
+             newcomments = this.props.comments.concat({
+                commentBy: "ADMIN",
+                profileOfUser: "#",
+                commenttime: new Date(),
+                comment: this.state.comment
+            })
+        } else {
+             newcomments = this.props.comments.concat({
+                commentBy: this.props.commentBy,
+                profileOfUser: this.props.profileId,
+                commenttime: new Date(),
+                comment: this.state.comment
+            })
+    
+        }
+        
         // console.log("commnnn",newcomments);
             await firestore.collection( this.props.data + 'Post').doc(this.props.id).update({
                 "postComments": newcomments
@@ -79,7 +90,9 @@ class PostCommentSection extends Component {
                             // console.log(item)
                             return (
                                 <div className="comment">
-                                    <span><b><Link to={"/profile/" + item.profileOfUser}>{item.commentBy}</Link></b> : </span> &nbsp;&nbsp; <span>{item.comment}</span><br></br>
+                                    {item.commentBy === "ADMIN" ? 
+                                     <span><b>{item.commentBy}</b> : </span> : 
+                            <span><b><Link to={"/profile/" + item.profileOfUser}>{item.commentBy}</Link></b> : </span> } &nbsp;&nbsp; <span>{item.comment}</span><br></br>
                                     <span id="commenttime">{moment(item.commenttime.toDate()).fromNow()}</span>
                                 </div>
                             )
@@ -101,12 +114,13 @@ const mapStateToProps = (state, ownProps) => {
     const data = ownProps.data;
     const posts = data === "admin" ? state.firestore.data.adminPost : state.firestore.data.userPost 
     const post = posts ? posts[id] : null
-    console.log("post", post.postComments, id, state);
+    // console.log("post", post.postComments, id, state);
 
     return {
         comments: post.postComments,
         commentBy: state.firebase.profile.fullName,
-        profileId: state.firebase.auth.uid
+        profileId: state.firebase.auth.uid,
+        adminAuth : state.AuthReducer.adminAuth
     }
 }
 

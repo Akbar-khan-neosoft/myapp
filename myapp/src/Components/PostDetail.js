@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
-import { Redirect } from 'react-router-dom'
+import { Redirect ,Link} from 'react-router-dom'
 import { compose } from "redux"
 import { firestoreConnect } from "react-redux-firebase"
 import firebase from '../Config/FirebaseConfig'
@@ -53,19 +53,21 @@ class PostDetails extends Component {
         const { post } = this.props
         // console.log(post.postTitle);
 
-        if (!this.props.auth.uid) return <Redirect to='/login' />
+        if (!this.props.auth.uid && !this.props.adminAuth) return <Redirect to='/login' />
         return (
             <div className="postdetailcontainer">
                 {this.props.post ?
                     <div className="postdetailcard">
                         <div className="posttitlesection">
                             <div className="postdetailtitle">{post.postTitle}</div>
-                            {this.props.auth.uid === this.props.post.profileId ? 
+                            {this.props.auth.uid === this.props.post.profileId || this.props.adminAuth === "ADMIN" ? 
                             <div className="postdeletebutton" onClick={()=>this.onPostDeleteHandle(this.props.match.params.id)}><i class="fa fa-trash fa-2x" aria-hidden="true"></i></div>
                                 : null }
                             </div>
                         <div className="postdetailothercontent">
-                            <span><b>Posted By : </b>{post.postedBy}</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {this.props.match.params.data === "admin" ? <span><b>Posted By : </b>{post.postedBy}</span>
+                            : <span><b>Posted By : </b><Link to={"/profile/" + post.profileId}>{post.postedBy}</Link></span>
+                            } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <span><b>Category :</b>   {post.postCategory}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <span><b>Post Date :</b> {moment(post.postDate.toDate()).calendar()}</span>
                         </div>
@@ -91,7 +93,8 @@ const mapStateToProps = (state, ownProps) => {
     const post = posts ? posts[id] : null
     return {
         post: post,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        adminAuth : state.AuthReducer.adminAuth
     }
 }
 

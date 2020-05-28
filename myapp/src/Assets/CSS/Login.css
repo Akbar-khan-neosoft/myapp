@@ -1,8 +1,14 @@
+.logindivcontainer{
+    width: 100%;
+    background-color: rgb(102, 170, 153);
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
 .logincontainer{
     width: 50%;
     margin-left: 25%;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    /* margin-top: 10%;
+    margin-bottom: 10%; */
     border: 1px solid rgb(160, 137, 137);
     background-color: rgb(237, 240, 243);
     border-radius: 16px;

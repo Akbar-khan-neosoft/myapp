@@ -48,9 +48,10 @@ class Login extends Component {
 
         if(this.props.auth.uid) return <Redirect to='/'/>
         return (
+            <div className="logindivcontainer">
             <div className="logincontainer">
                 <div className="formtitle">
-                    Sign in
+                    Student SignIn
                 </div>
                 <form className="form">
                     <TextField required margin="normal" type="email" name="email" fullWidth label="Email" variant="outlined" onChange={this.onChangeHandle} />
@@ -65,6 +66,7 @@ class Login extends Component {
         {loginError ? <p>{loginError}</p> : null}
                 </div>
 
+            </div>
             </div>
         )
     }

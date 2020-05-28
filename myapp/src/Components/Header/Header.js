@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
 import LoggedInHeader from './LoggedInHeader'
 import LoggedOutHeader from './LoggedOutHeader'
+import AdminLoggedInHeader from './AdminLoggedInHeader'
 
 class Header extends Component {
     constructor(props){
@@ -10,11 +12,11 @@ class Header extends Component {
 
     render() {
 
-        const links = this.props.auth.uid ? <LoggedInHeader/> : <LoggedOutHeader/>
+        const links = this.props.auth.uid ? <LoggedInHeader/> : this.props.adminAuth === "ADMIN" ? <AdminLoggedInHeader/> : <LoggedOutHeader/>
         return (
 
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-                <a class="navbar-brand" style={{color: "White"}} >Your Brand Name Here</a>
+                <Link  to="/" class="navbar-brand" style={{color: "White"}} ><h3>COLLEGE CONNECT</h3></Link>
                 {links}
                 {/* {localStorage.getItem("login") =="true" ? <LoggedInHeader/> : <LoggedOutHeader/>} */}
                 
@@ -29,8 +31,11 @@ class Header extends Component {
 }
 
 const mapStateToProps =(state)=>{ 
-    // console.log("stateaaa",state.firebase.auth);
-    return{ auth : state.firebase.auth}
+    console.log("stateaaa",state);
+    return{ 
+        auth : state.firebase.auth,
+        adminAuth : state.AuthReducer.adminAuth
+    }
 }
 
 export default connect(mapStateToProps) (Header)

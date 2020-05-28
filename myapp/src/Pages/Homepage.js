@@ -55,7 +55,7 @@ class Homepage extends Component {
 
 const mapStateToPrpos = (state) => {
   // const id = ownProps.match.params.id;
-  console.log("state",state);
+  // console.log("state",state);
 
   const adminpost = state.firestore.ordered.adminPost;
   const adminposts = adminpost ? adminpost : null

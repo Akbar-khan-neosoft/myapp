@@ -9,8 +9,8 @@ class PostCard extends Component {
     }
 
     render() {
-        // console.log(this.props.post);
-        const postlist = this.props.post
+        const postlist = this.props.post.slice().sort((a, b) => b.postDate - a.postDate)
+        
         return (
             <div className="postsummary">
                 {postlist ? postlist.map(res => {

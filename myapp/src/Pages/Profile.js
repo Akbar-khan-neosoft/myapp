@@ -20,7 +20,7 @@ class Profile extends Component {
 
     render() {
 
-        if (!this.props.auth.uid) return <Redirect to='/login' />
+        if (!this.props.auth.uid && !this.props.adminAuth) return <Redirect to='/login' />
         return (
             <div className="containerdiv">
                 {this.props.profile ?
@@ -70,7 +70,8 @@ const mapStateToPrpos = (state, ownProps) => {
     return {
         profile: profile,
         auth: state.firebase.auth,
-        post:posts
+        post:posts,
+        adminAuth : state.AuthReducer.adminAuth
     }
 }
 
