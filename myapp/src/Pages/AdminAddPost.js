@@ -17,7 +17,7 @@ class AdminAddPost extends Component {
                 postTitle: '',
                 postContent: '',
                 links: '',
-                postLikes: 0,
+                postLikes: [],
                 postComments: []
             },
             disableButton: true,
