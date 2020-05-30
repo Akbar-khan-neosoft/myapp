@@ -15,7 +15,7 @@ export const useraddpost = data => async (dispatch) =>{
         // console.log("i am in");
         const firestore = firebase.firestore()
         // console.log("i am in 2");
-        const res = await firestore.collection('userPost').add({
+        const res = await firestore.collection(data.database).add({
             ...data,
         })
         // console.log("i am in 3");

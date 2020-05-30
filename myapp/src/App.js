@@ -7,7 +7,6 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 import store from './Redux/Store'
 import firebase from 'firebase/app'
-import AdminRoutes from './App_Routes/AdminRoutes'
 
 class App extends Component{
 
@@ -25,7 +24,6 @@ class App extends Component{
         <ReactReduxFirebaseProvider {...rrfProps}>
       <BrowserRouter>
       <Layout>
-      <AdminRoutes/>
        <AppRoutes/>
       </Layout>
       </BrowserRouter>

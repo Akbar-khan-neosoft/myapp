@@ -5,7 +5,7 @@ import { Visibility, VisibilityOff } from '@material-ui/icons';
 import '../Assets/CSS/Signup.css'
 import {EMAIL_REGEX,NAME_REGEX,MOBILE_REGEX,customErrorMessages} from '../Utils/Validation'
 import {connect} from 'react-redux'
-import {usersignup} from '../Redux/Actions/SignUpAction'
+import {adminsignup} from '../Redux/Actions/AdminSignUpAction '
 
 class Signup extends Component {
     constructor(props) {
@@ -18,7 +18,8 @@ class Signup extends Component {
                 mobile: '',
                 gender: 'male',
                 password: '',
-                confirmPassword: ''
+                confirmPassword: '',
+                verificationCode:''
             },
             error:{
                 firstnameError:false,
@@ -97,9 +98,16 @@ class Signup extends Component {
     }
 
     onSubmitHandle= async()=>{
-        await this.props.signup(this.state.data)
-        alert("Sign Up Success");
-        this.props.history.push("/login");
+        if(this.state.data.verificationCode === '061212102210')
+        {
+            await this.props.signup(this.state.data)
+            alert("Sign Up Success");
+            this.props.history.push("/login");
+        } else {
+            alert("Wrong Verifiation Code,Contact Head Of Department");
+            this.props.history.push("/");
+        }
+       
     }
 
     render() {
@@ -111,7 +119,6 @@ class Signup extends Component {
         return (
             <div className="signupcontainer">
                 <div className="formcontainer">
-                   
                     <form>
                         <div className="formheading"><h1>Register</h1></div>
                         <div className="formrow">
@@ -267,6 +274,17 @@ class Signup extends Component {
 									</span>
 								) : null}
                         </div>
+                        <div className="formrow">
+                            <FormControl fullWidth>
+                                <TextField
+                                    name="verificationCode"
+                                    type="text"
+                                    label="Verification Code"
+                                    placeholder="Verification Code"
+                                    variant="outlined"
+                                    onChange={this.onChangeHandle}
+                                />
+                            </FormControl></div>
                     </form>
                     <div className="registerbutton"><button disabled={this.state.disableButton} onClick={this.onSubmitHandle} style={{width:"60%",height:"50px",marginLeft:"20%",border:"2%",backgroundColor:"rgb(37, 61, 199)",color:"White",fontSize:"30px"}} >Register</button></div>
                 </div>
@@ -284,7 +302,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch)=>{
 return{
-    signup : (data) =>dispatch(usersignup(data))
+    signup : (data) =>dispatch(adminsignup(data))
 }
 }
 

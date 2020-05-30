@@ -1,11 +1,11 @@
-import { USER_SIGNUP_SUCCESS, USER_SIGNUP_FAILURE } from '../Constants/index'
+import { ADMIN_SIGNUP_SUCCESS, ADMIN_SIGNUP_FAILURE } from '../Constants/index'
 import firebase from '../../Config/FirebaseConfig'
 
 
-const usersignupsuccess = () => ({ type: USER_SIGNUP_SUCCESS });
-const usersignupfailure = error => ({ type: USER_SIGNUP_FAILURE, error: error });
+const adminsignupsuccess = () => ({ type: ADMIN_SIGNUP_SUCCESS });
+const adminsignupfailure = error => ({ type: ADMIN_SIGNUP_FAILURE, error: error });
 
-export const usersignup = newuserdata => async (dispatch) => {
+export const adminsignup = newuserdata => async (dispatch) => {
 
     try{
         // console.log("i am in");
@@ -22,13 +22,13 @@ export const usersignup = newuserdata => async (dispatch) => {
             gender : newuserdata.gender,
             mobile : newuserdata.mobile,
             email: newuserdata.email,
-            role: "USER"
+            role: "ADMIN"
         })
         // console.log("i am in 3");
         // console.log(res);
-        dispatch(usersignupsuccess());
+        dispatch(adminsignupsuccess());
     } catch (error) {
-		dispatch(usersignupfailure({ error }));
+		dispatch(adminsignupfailure({ error }));
 	}
 
 };

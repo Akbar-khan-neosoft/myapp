@@ -4,10 +4,12 @@ import Homepage from '../Pages/Homepage';
 import Login from '../Pages/Login';
 import Signup from '../Pages/Signup';
 import ForgetPassword from '../Pages/ForgetPassword';
-import AdminAddPost from '../Pages/AdminAddPost';
 import PostDetails from '../Components/PostDetail';
 import Profile from '../Pages/Profile';
 import UserAddPost from '../Pages/UserAddPost';
+import About from '../Pages/About';
+import AdminSignup from '../Pages/AdminSignup';
+
 
 function AppRoutes() {
     return (
@@ -18,11 +20,13 @@ function AppRoutes() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Signup} />
             <Route exact path="/forgetpassword" component={ForgetPassword}/>
-            <Route exact path="/adminaddpost" component={AdminAddPost}/>
             <Route exact path="/post/:data/:id" component={PostDetails}/>
             <Route exact path="/profile/:id" component={Profile}/>
             <Route exact path="/useraddpost" component={UserAddPost}/>
             <Route exact path="/profile/post/:data/:id" component={PostDetails}/>
+            <Route exact path="/about" component={About}/>
+            <Route exact path="/adminregister" component={AdminSignup}/>
+
 
         </Switch>
 

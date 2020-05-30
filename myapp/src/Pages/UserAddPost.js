@@ -17,7 +17,7 @@ class UserAddPost extends Component {
                 postTitle: '',
                 postContent: '',
                 links: '',
-                postLikes: [],
+                postLike: [],
                 postComments: []
             },
             disableButton: true,
@@ -62,6 +62,7 @@ class UserAddPost extends Component {
 
     onSubmitHandle= async (e)=>{
         e.preventDefault()
+        // console.log("props",this.props)
         const Data ={
             postedBy: this.props.fullName,
             profileId: this.props.profileId,
@@ -69,13 +70,14 @@ class UserAddPost extends Component {
             postTitle: this.state.data.postTitle,
             postContent: this.state.data.postContent,
             links: this.state.data.links,
-            postLikes: this.state.data.postLikes,
+            postLike: this.state.data.postLike,
             postComments: this.state.data.postComments,
-            postDate: new Date()
+            postDate: new Date(),
+            database: this.props.role === "ADMIN" ? "adminPost" : "userPost" 
         }
 
         await this.props.onUserAddPost(Data)
-        // alert(this.props.data)
+        // console.log("data",Data)
         this.props.history.push("/");
     }
 
@@ -128,6 +130,10 @@ class UserAddPost extends Component {
                                         <option value={"Studies/Examination Related"}>Studies/Examination Related</option>
                                         <option value={"Special Days Or Celebration"}>Special Days Or Celebration</option>
                                         <option value={"Feedbacks"}>Feedbacks</option>
+                                        <option value={"University Examinations"}>University Examinations</option>
+                                        <option value={"College Exams"}>College Exams</option>
+                                        <option value={"College Notice"}>College Notice</option>
+                                        <option value={"Result Notice"}>Result Notice</option>
                                         <option value={"Others"}>Others</option>
 
 
@@ -206,6 +212,7 @@ const mapStateToProps = state =>{
     return{
         fullName:state.firebase.profile.fullName,
         profileId:state.firebase.auth.uid,
+        role:state.firebase.profile.role,
 
     }
 }

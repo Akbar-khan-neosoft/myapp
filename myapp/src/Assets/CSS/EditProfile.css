@@ -1,0 +1,32 @@
+
+.editprofileformcontainer{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: rgba(43, 33, 33, 0.459);
+    border: 5px double rgb(228, 186, 186);
+    border-radius: 2%;
+}
+
+.editprofileformrow{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 1%;
+}
+.editprofileformheading{
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.editprofileregisterbutton{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}

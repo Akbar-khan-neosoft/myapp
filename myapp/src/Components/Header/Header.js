@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import LoggedInHeader from './LoggedInHeader'
 import LoggedOutHeader from './LoggedOutHeader'
-import AdminLoggedInHeader from './AdminLoggedInHeader'
 
 class Header extends Component {
     constructor(props){
@@ -12,7 +11,7 @@ class Header extends Component {
 
     render() {
 
-        const links = this.props.auth.uid ? <LoggedInHeader/> : this.props.adminAuth === "ADMIN" ? <AdminLoggedInHeader/> : <LoggedOutHeader/>
+        const links = this.props.auth.uid ? <LoggedInHeader/> : <LoggedOutHeader/>
         return (
 
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">

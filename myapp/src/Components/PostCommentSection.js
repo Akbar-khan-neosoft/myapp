@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { compose } from "redux"
 import { firestoreConnect } from "react-redux-firebase"
-import { FormControl, TextField,Button } from '@material-ui/core'
+import { FormControl, TextField, Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import firebase from '../Config/FirebaseConfig'
 import moment from 'moment'
@@ -26,35 +26,16 @@ class PostCommentSection extends Component {
     onSubmitHandle = async (e) => {
         e.preventDefault();
         const firestore = firebase.firestore()
-        let newcomments;
-        // console.log("id", this.props.id);
-        if(this.props.adminAuth === "ADMIN"){
-             newcomments = this.props.comments.concat({
-                commentBy: "ADMIN",
-                profileOfUser: "#",
-                commenttime: new Date(),
-                comment: this.state.comment
-            })
-        } else {
-             newcomments = this.props.comments.concat({
+        const newcomments = this.props.comments.concat({
                 commentBy: this.props.commentBy,
                 profileOfUser: this.props.profileId,
                 commenttime: new Date(),
                 comment: this.state.comment
             })
-    
-        }
-        
-        // console.log("commnnn",newcomments);
-            await firestore.collection( this.props.data + 'Post').doc(this.props.id).update({
-                "postComments": newcomments
-                //  concat(this.props.comments,({
-                //     commentBy: this.props.commentBy,
-                //     profileOfUser: this.props.profileId,
-                //     commenttime: new Date(),
-                //     comment: this.state.comment
-                // }))
-                })
+
+        await firestore.collection(this.props.data + 'Post').doc(this.props.id).update({
+            "postComments": newcomments
+        })
 
         this.setState({ comment: "" })
 
@@ -77,7 +58,7 @@ class PostCommentSection extends Component {
                             />
                         </FormControl></div>
                     <div className="submitcommentbutton">
-                    <Button type="submit" fullWidth variant="contained" color="primary" style={{ marginTop: "2%" }} onClick={this.onSubmitHandle}>Submit Your Comment</Button>
+                        <Button type="submit" fullWidth variant="contained" color="primary" style={{ marginTop: "2%" }} onClick={this.onSubmitHandle}>Submit Your Comment</Button>
                         {/* <button onClick={this.onSubmitHandle} style={{backgroundColor: "rgb(37, 61, 199)" }}>Submit</button> */}
                     </div>
 
@@ -90,16 +71,14 @@ class PostCommentSection extends Component {
                             // console.log(item)
                             return (
                                 <div className="comment">
-                                    {item.commentBy === "ADMIN" ? 
-                                     <span><b>{item.commentBy}</b> : </span> : 
-                            <span><b><Link to={"/profile/" + item.profileOfUser}>{item.commentBy}</Link></b> : </span> } &nbsp;&nbsp; <span>{item.comment}</span><br></br>
+                                    <span><b><Link to={"/profile/" + item.profileOfUser}>{item.commentBy}</Link></b> : </span> } &nbsp;&nbsp; <span>{item.comment}</span><br></br>
                                     <span id="commenttime">{moment(item.commenttime.toDate()).fromNow()}</span>
                                 </div>
                             )
                         })
 
                         )
-                    }) : <div style={{textAlign:"center"}}>No Comments</div>}
+                    }) : <div style={{ textAlign: "center" }}>No Comments</div>}
                 </div>
             </div>
         )
@@ -112,7 +91,7 @@ const mapStateToProps = (state, ownProps) => {
     // console.log("abcd", state.firestore.data.adminPost,ownProps.match.params.id);
     const id = ownProps.id
     const data = ownProps.data;
-    const posts = data === "admin" ? state.firestore.data.adminPost : state.firestore.data.userPost 
+    const posts = data === "admin" ? state.firestore.data.adminPost : state.firestore.data.userPost
     const post = posts ? posts[id] : null
     // console.log("post", post.postComments, id, state);
 
@@ -120,7 +99,7 @@ const mapStateToProps = (state, ownProps) => {
         comments: post.postComments,
         commentBy: state.firebase.profile.fullName,
         profileId: state.firebase.auth.uid,
-        adminAuth : state.AuthReducer.adminAuth
+        adminAuth: state.AuthReducer.adminAuth
     }
 }
 
@@ -128,7 +107,7 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect([
         { collection: 'adminPost' },
-        {collection : 'userPost'}
+        { collection: 'userPost' }
     ]))
     (PostCommentSection)
 

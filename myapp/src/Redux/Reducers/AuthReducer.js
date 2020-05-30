@@ -1,4 +1,4 @@
-import { ADMIN_LOGOUT_SUCCESS,ADMIN_LOGIN_SUCCESS,USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE, USER_LOGOUT_SUCCESS, USER_LOGOUT_FAILURE } from '../Constants'
+import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE, USER_LOGOUT_SUCCESS, USER_LOGOUT_FAILURE } from '../Constants'
 
 const initialState = {
     isFetching: false,
@@ -22,12 +22,6 @@ function AuthReducer(state = initialState, action) {
         case USER_LOGOUT_FAILURE:
             console.log("logout failed");
             return { ...state, error: "Logout Error" }
-        case ADMIN_LOGOUT_SUCCESS:
-            console.log("admin logout success");
-            return { ...state, adminAuth: '' }
-        case ADMIN_LOGIN_SUCCESS:
-            console.log("adminlogin success");
-            return { ...state, adminAuth: "ADMIN" }
         default:
             return state;
     }

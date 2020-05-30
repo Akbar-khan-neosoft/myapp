@@ -5,8 +5,13 @@ import { connect } from "react-redux"
 import { Redirect } from 'react-router-dom'
 import '../Assets/CSS/Profile.css'
 import '../Assets/CSS/Post.css'
+import { Button } from '@material-ui/core';
 import Loading from '../Components/Loading'
 import PostCard from '../Components/PostCard';
+import male from '../Assets/Images/male.jpg'
+import female from '../Assets/Images/female.jpg'
+import EditProfile from '../Components/EditProfile';
+
 
 
 
@@ -16,9 +21,17 @@ import PostCard from '../Components/PostCard';
 class Profile extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            showProfileEdit: false
+        }
+    }
+
+    onShowProfileEdit = () => {
+        this.setState({ showProfileEdit: !this.state.showProfileEdit })
     }
 
     render() {
+        const role = this.props.profile ? this.props.profile.role === "ADMIN" ? "admin"  : "user" : null
 
         if (!this.props.auth.uid && !this.props.adminAuth) return <Redirect to='/login' />
         return (
@@ -26,10 +39,13 @@ class Profile extends Component {
                 {this.props.profile ?
                     <div className="profilecontainer">
                         <div className="leftsideprofile">
-                            <div className="profileheading"><h2>Personal Details</h2></div>
-                            <div className="profilepicture">{this.props.profile.gender === "male" ? <img src="https://image.flaticon.com/icons/png/512/0/93.png" width="80%" height="50%" /> : <img src="https://lh3.googleusercontent.com/proxy/eXMdR9SfK-5cAQbEh4BbwD6kiGgF51xWqj7EDHYrAA1QfO3xyBgig_9r7wfhyNXWe_Z_y1ayIRi3Ul-V9-ekQ87Ahd602cZSe7zk9bpVUWYIiM-nwTBMGBA7oF1BTaucliNc" width="80%" height="50%" />}</div>
+                            <div className="profileheading"><h3>Personal Details</h3></div>
+                            <div className="profilepicture">{this.props.profile.gender === "male" ? <img src={male} width="80%" height="80%" /> : <img src={female} width="80%" height="80%" />}</div>
                             <div className="profilename">
                                 <span><b>Name</b> : </span> &nbsp;&nbsp; <span>{this.props.profile.fullName}</span>
+                            </div>
+                            <div className="profilerole">
+                                <span><b>Role</b> : </span> &nbsp;&nbsp; <span>{this.props.profile.role}</span>
                             </div>
                             <div className="profilegender">
                                 <span><b>Gender</b> : </span> &nbsp;&nbsp; <span>{this.props.profile.gender}</span>
@@ -38,12 +54,19 @@ class Profile extends Component {
                                 <span><b>Email</b> : </span> &nbsp;&nbsp;<span>{this.props.profile.email}</span>
                             </div>
                             <div className="profilemobile">
-                                <span><b>Mobile</b> : </span> &nbsp;&nbsp; <span>{this.props.profile.mobile}</span>
+                                <span><b>Mobile</b> : </span> &nbsp;&nbsp;
+                                {(this.props.auth.uid === this.props.profile.profileId || this.props.profile.role === "ADMIN")
+                                 ? <span>{this.props.profile.mobile}</span> : <span>"Hidden"</span>}
                             </div>
+                            <div className="profileEditButton">
+                            {this.state.showProfileEdit ?
+                                <Button type="submit" variant="contained" color="primary" style={{ marginTop: "3%" }} onClick={this.onShowProfileEdit}>My Post</Button>
+                                : <Button type="submit" variant="contained" color="primary" style={{ marginTop: "3%" }} onClick={this.onShowProfileEdit}>Edit Profile</Button>}
+                                </div>
                         </div>
                         <div className="rightsideposts">
-                            <div className="PostContainer">
-                                <PostCard post={this.props.post} postDetail="user"/>
+                            <div className="profilePostContainer">
+                                {this.state.showProfileEdit ? <EditProfile profile ={this.props.profile} id = {this.props.auth.uid}/> : <PostCard post={this.props.post} postDetail= {role} />}
                             </div>
                         </div>
                     </div> : <Loading />}
@@ -54,7 +77,7 @@ class Profile extends Component {
 
 const mapStateToPrpos = (state, ownProps) => {
     const id = ownProps.match.params.id;
-    const userposts = state.firestore.ordered.userPost;
+    const userposts = state.firestore.ordered.userPost && state.firestore.ordered.adminPost;
     const posts = userposts ? userposts.map(res => {
         return (res)
     }).filter(item => {
@@ -70,8 +93,7 @@ const mapStateToPrpos = (state, ownProps) => {
     return {
         profile: profile,
         auth: state.firebase.auth,
-        post:posts,
-        adminAuth : state.AuthReducer.adminAuth
+        post: posts,
     }
 }
 
@@ -79,5 +101,6 @@ export default compose(
     connect(mapStateToPrpos),
     firestoreConnect([
         { collection: 'users' },
-        { collection: 'userPost' }
+        { collection: 'userPost' },
+        { collection: 'adminPost' }
     ]))(Profile)

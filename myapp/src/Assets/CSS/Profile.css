@@ -49,6 +49,13 @@
     margin-right: 5%;
     margin-left: 5%;
 }
+.profilerole{
+    width: 90%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
 
 .profilegender{
     width: 90%;
@@ -70,5 +77,16 @@
     margin-bottom: 1%;
     margin-right: 5%;
     margin-left: 5%;
+}
+
+.profilePostContainer{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.profileEditButton{
+    padding-left: 25%;
+    padding-right: 25%;
 }
 

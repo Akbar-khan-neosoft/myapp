@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import firebase from '../Config/FirebaseConfig'
 import '../Assets/CSS/ForgetPassword.css'
 import { TextField, Button, FormControl } from '@material-ui/core';
 import { EMAIL_REGEX, customErrorMessages } from '../Utils/Validation'
@@ -21,12 +22,12 @@ class ForgetPassword extends Component {
     }
 
     onChangeHandle = (e) => {
-        e.preventDefault()       
+        e.preventDefault()
         this.setState({ email: e.target.value })
     }
 
     validate = () => {
-       
+
         this.setState({ error: { emailError: false, errorMessage: '' } });
 
         if (this.state.email === '' || !EMAIL_REGEX.test(this.state.email)) {
@@ -42,7 +43,14 @@ class ForgetPassword extends Component {
     onSubmitHandle = (e) => {
         e.preventDefault()
         const { email } = this.state
-        alert("email sent, check ur inbox")
+        // alert("email sent, check ur inbox")
+        var auth = firebase.auth();
+        auth.sendPasswordResetEmail(email).then(() => {
+           alert("Email sent,Check your Mail")
+        }).catch(error => {
+           alert(error.message);
+            
+        });
 
     }
 
