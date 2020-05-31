@@ -51,15 +51,15 @@ class Login extends Component {
             <div className="logindivcontainer">
             <div className="logincontainer">
                 <div className="formtitle">
-                    Student SignIn
+                    LOGIN
                 </div>
                 <form className="form">
                     <TextField required margin="normal" type="email" name="email" fullWidth label="Email" variant="outlined" onChange={this.onChangeHandle} />
                     <TextField required margin="normal" type="password" name="password" fullWidth label="Password" variant="outlined" onChange={this.onChangeHandle} />
                     <Button type="submit" fullWidth variant="contained" color="primary" style={{ marginTop: "3%" }} onClick={this.onSubmitHandle}>Sign In</Button>
                     <Grid container>
-                        <Grid item xs><Link to="/forgetpassword" variant="body2">Forgot password?</Link></Grid>
-                        <Grid item><Link to="/register" variant="body2">Don't have an account? Sign Up</Link></Grid>
+                        <Grid item xs id="otherlink"><Link to="/forgetpassword" variant="body2">Forgot password?</Link></Grid>
+                        <Grid item id="otherlink"><Link to="/register" variant="body2">Don't have an account? Sign Up</Link></Grid>
                     </Grid>
                 </form>
                 <div className="loginerror">

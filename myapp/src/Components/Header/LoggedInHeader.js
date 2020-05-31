@@ -7,9 +7,9 @@ import { userlogout } from '../../Redux/Actions/AuthAction'
 
 
 class LoggedInHeader extends Component {
-    constructor() {
-        super()
-    }
+    // constructor() {
+    //     super()
+    // }
 
     onSignoutHandle = async (e) => {
         e.preventDefault()
@@ -20,15 +20,16 @@ class LoggedInHeader extends Component {
     render() {
         return (
             <div >
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <Link class="nav-item nav-link btn" to="/">Home </Link>
-                        <Link class="nav-item nav-link btn" to="/useraddpost">Add Post </Link>
-                        <Link class="nav-item nav-link" to={"/profile/" + this.props.profileId}>Profile</Link>
-                        <a class="nav-item nav-link btn" onClick={this.onSignoutHandle}>SignOut</a>
+                <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div className="navbar-nav">
+                        <Link className="nav-item nav-link btn" to="/">Home </Link>
+                        <Link className="nav-item nav-link btn" to="/useraddpost">Add Post </Link>
+                        <Link className="nav-item nav-link" to={"/profile/" + this.props.profileId}>Profile</Link>
+                        <Link className="nav-item nav-link"  to="/about" >About</Link>
+                        <span className="nav-item nav-link btn" onClick={this.onSignoutHandle}>SignOut</span> 
                     </div>
                 </div>
             </div>

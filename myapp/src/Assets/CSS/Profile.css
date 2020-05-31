@@ -86,7 +86,93 @@
 }
 
 .profileEditButton{
-    padding-left: 25%;
-    padding-right: 25%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
+@media only screen and (max-width: 500px) {
+   .containerdiv{
+        background-color: rgb(102, 170, 153);
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-top: 2%;
+        padding-bottom: 6%;
+    }
+    .profilecontainer{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .leftsideprofile{
+        width: 100%;
+         display: flex;
+         flex-direction: column;
+    }
+    
+    .rightsideposts{
+        width: 100%;
+        /* padding-left: 2%;
+        padding-right: 2%; */
+        /* padding-top: 2%; */
+        padding-bottom: 2%;
+    }
+    .profileheading{
+        text-align: center;
+        display: none;
+    }
+    
+    .profilepicture{
+        align-items: center;
+        width: 50%;
+        margin-top: 2%;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    
+    .profilename{
+        width: 90%;
+        /* margin-top: 1%; */
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    .profilerole{
+        width: 90%;
+        /* margin-top: 1%; */
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    
+    .profilegender{
+        width: 90%;
+        /* margin-top: 1%; */
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    .profileemail{
+        width: 95%;
+        /* margin-top: 1%; */
+        /* margin-right: 5%; */
+        margin-left: 5%;
+    }
+    .profilemobile{
+        width: 90%;
+        margin-top: 1%;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    
+    .profilePostContainer{
+        width: 96%;
+        margin-top: 10%;
+        border-top: 1px solid black;
+        margin-bottom: 5%;
+        /* margin-left: 5%;
+        margin-right: 5%; */
+    }
+    
+    .profileEditButton{
+        padding-left: 25%;
+        padding-right: 25%;
+    }
+  }

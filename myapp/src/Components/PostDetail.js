@@ -18,6 +18,7 @@ class PostDetails extends Component {
         super(props)
         this.state = {
             showCommentSection: false,
+            likearray:{}
         }
     }
 
@@ -26,37 +27,20 @@ class PostDetails extends Component {
 
         const firestore = firebase.firestore()
         if (param) {
-            // if (this.props.adminAuth === "ADMIN") {
-            //     // newlikes = this.props.post.postLike.concat("ADMIN")
-            //     await firestore.collection(this.props.match.params.data + 'Post').doc(this.props.match.params.id).update({
-            //         "postLike": this.props.post.postLike.concat({id:"ADMIN"})
-            //     });
-            // } else {
-            // newlikes = this.props.post.postLike.concat(this.props.auth.uid)
             await firestore.collection(this.props.match.params.data + 'Post').doc(this.props.match.params.id).update({
-                "postLike": this.props.post.postLike.concat({ id: this.props.auth.uid })
+                postLike: firebase.firestore.FieldValue.arrayUnion(this.props.auth.uid)
             });
-            // }
         } else {
-            let likearray = this.props.post.postLike
-            //need to work on this logic facing error with array.splice function 
-            // console.log(likearray);
-            //     console.log(this.props.post.postLike);
-            //     if(this.props.adminAuth === "ADMIN") {
-            //     const index = likearray.findIndex(res => { return res.id === "ADMIN" })
-            //     console.log(index);
-            //     likearray.splice(index, 1);
-            // } else {
-            const index = likearray.findIndex(res => { return res.id === this.props.auth.uid })
-            likearray.splice(index, 1);
-            console.log(index);
+            let likearray = {...this.props.post};
+        this.setState({likearray: this.props.post})
 
+            console.log("b",this.state.likearray);
+            console.log("c",likearray);
             await firestore.collection(this.props.match.params.data + 'Post').doc(this.props.match.params.id).update({
-                "postLike": likearray
+                postLike: firebase.firestore.FieldValue.arrayRemove(this.props.auth.uid)
             });
         }
     }
-    // this.setState({ showLikeDislike: !this.state.showLikeDislike })
 
 
     onPostDeleteHandle = async (id) => {
@@ -73,20 +57,13 @@ class PostDetails extends Component {
 
     render() {
 
-        // console.log("like",this.props.post.postLike);
 
         let likebutton;
 
         if (this.props.auth.uid) {
-            this.props.post.postLike.length !== 0 ? this.props.post.postLike.findIndex(res => { return res.id === this.props.auth.uid }) === -1 ?
+            this.props.post.postLike.length !== 0 ? this.props.post.postLike.findIndex(res => { return res === this.props.auth.uid }) === -1 ?
                 likebutton = true : likebutton = false : likebutton = true
         }
-        // else if (this.props.adminAuth === "ADMIN") {
-        //     this.props.post.postLike.length !== 0 ?
-        //         this.props.post.postLike.findIndex(res => { return res.id === "ADMIN" }) === -1 ? likebutton = true : likebutton = false
-        //         : likebutton = true
-        // }
-
 
         const { post } = this.props
 
@@ -107,11 +84,11 @@ class PostDetails extends Component {
                             <span><b>Post Date :</b> {moment(post.postDate.toDate()).calendar()}</span>
                         </div>
                         <div className="postdetailcontent">* {post.postContent}</div>
-                        <div className="postdetaillinks"><b>Reference Link :</b> <span style={{ color: "red" }}>{post.links}</span></div>
+                        <div className="postdetaillinks"><b>Reference Link :</b> <span>{post.links}</span></div>
                         <div className="postdetailsbuttons">
                             <button class="btn-primary" onClick={() => this.likehandle(likebutton)} style={{ marginLeft: "1%", marginRight: "1%" }}>
                                 {likebutton ? <span>Like</span> : <span>Dislike</span>} {post.postLike.length}</button>
-                            <button class="btn-primary" onClick={this.handleshowCommentSection} style={{ marginLeft: "1%", marginRight: "1%" }}>Comment section</button>
+                            <button class="btn-primary" onClick={this.handleshowCommentSection} style={{ marginLeft: "1%", marginRight: "1%" }}>Comments</button>
                         </div>
                         <div className="postcommentsection">{this.state.showCommentSection ? <PostCommentSection id={this.props.match.params.id} data={this.props.match.params.data} /> : null}</div>
                     </div>

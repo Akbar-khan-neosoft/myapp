@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import {Redirect} from 'react-router-dom'
-import { FormControl, TextField, RadioGroup, FormControlLabel, Radio, FormLabel, InputAdornment, IconButton, OutlinedInput, InputLabel } from '@material-ui/core'
+import { FormControl, TextField, RadioGroup, FormControlLabel,Button, Radio, FormLabel, InputAdornment, IconButton, OutlinedInput, InputLabel } from '@material-ui/core'
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import '../Assets/CSS/Signup.css'
 import {EMAIL_REGEX,NAME_REGEX,MOBILE_REGEX,customErrorMessages} from '../Utils/Validation'
@@ -120,7 +120,7 @@ class Signup extends Component {
             <div className="signupcontainer">
                 <div className="formcontainer">
                     <form>
-                        <div className="formheading"><h1>Register</h1></div>
+                        <div className="formheading">Admin Register</div>
                         <div className="formrow">
                             <FormControl fullWidth>
                                 <TextField
@@ -286,7 +286,7 @@ class Signup extends Component {
                                 />
                             </FormControl></div>
                     </form>
-                    <div className="registerbutton"><button disabled={this.state.disableButton} onClick={this.onSubmitHandle} style={{width:"60%",height:"50px",marginLeft:"20%",border:"2%",backgroundColor:"rgb(37, 61, 199)",color:"White",fontSize:"30px"}} >Register</button></div>
+                    <div className="registerbutton"><Button type="submit" fullWidth variant="contained" color="primary" style={{ marginTop: "2%" }}  disabled={this.state.disableButton} onClick={this.onSubmitHandle} >Register</Button></div>
                 </div>
             </div>
         )

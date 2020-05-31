@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 // import { withRouter } from "react-router";
-import { FormControl, TextField, RadioGroup, FormControlLabel, Radio, FormLabel} from '@material-ui/core'
+import { FormControl, TextField, Button, RadioGroup, FormControlLabel, Radio, FormLabel} from '@material-ui/core'
 import '../Assets/CSS/EditProfile.css'
 import firebase from '../Config/FirebaseConfig'
 import {EMAIL_REGEX,NAME_REGEX,MOBILE_REGEX,customErrorMessages} from '../Utils/Validation'
@@ -35,8 +35,8 @@ class EditProfile extends Component {
     };
 
     validate=()=>{
-        const{firstName,lastName,email,mobile,password,confirmPassword}=this.state.data;
-        this.setState({error: { firstnameError:false,lastnameError:false,emailError:false,mobileError:false,passwordError:false,confirmpasswordError:false,errorMessage:'' }});
+        const{firstName,lastName,email,mobile}=this.state.data;
+        this.setState({error: { firstnameError:false,lastnameError:false,emailError:false,mobileError:false,errorMessage:'' }});
         
         // validation logic starts here , using validation.js file as validation file
 
@@ -92,7 +92,7 @@ class EditProfile extends Component {
                 <div className="editprofileformcontainer">
                    
                     <form>
-                        <div className="editprofileformheading"><h1>Edit Profile</h1></div>
+                        <div className="editprofileformheading">Edit Profile</div>
                         <div className="editprofileformrow">
                             <FormControl fullWidth>
                                 <TextField
@@ -188,7 +188,7 @@ class EditProfile extends Component {
                             </FormControl>
                         </div>
                     </form>
-                    <div className="editprofileregisterbutton"><button disabled={this.state.disableButton} onClick={()=>this.onSubmitHandle(this.props.id)} style={{width:"60%",height:"50px",marginLeft:"20%",border:"2%",backgroundColor:"rgb(37, 61, 199)",color:"White",fontSize:"30px"}} >Update Profile</button></div>
+                    <div className="editprofileregisterbutton"> <Button type="submit" fullWidth variant="contained" color="primary" disabled={this.state.disableButton} onClick={()=>this.onSubmitHandle(this.props.id)} style={{ marginTop: "2%" }} >Update Profile</Button></div>
                 </div>
         )
     }

@@ -14,15 +14,10 @@ class Header extends Component {
         const links = this.props.auth.uid ? <LoggedInHeader/> : <LoggedOutHeader/>
         return (
 
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-                <Link  to="/" class="navbar-brand" style={{color: "White"}} ><h3>COLLEGE CONNECT</h3></Link>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+                <div className="headingtitle"><Link  to="/" className="navbar-brand" style={{color: "White"}} ><h4>COLLEGE CONNECT</h4></Link></div>
                 {links}
-                {/* {localStorage.getItem("login") =="true" ? <LoggedInHeader/> : <LoggedOutHeader/>} */}
-                
-                
-                
-                
-                
+                              
             </nav>
 
         )
@@ -30,7 +25,6 @@ class Header extends Component {
 }
 
 const mapStateToProps =(state)=>{ 
-    console.log("stateaaa",state);
     return{ 
         auth : state.firebase.auth,
         adminAuth : state.AuthReducer.adminAuth

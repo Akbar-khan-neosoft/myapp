@@ -4,9 +4,9 @@ import '../Assets/CSS/Post.css'
 import {Link} from 'react-router-dom'
 
 class PostCard extends Component {
-    constructor(props) {
-        super(props)
-    }
+    // constructor(props) {
+    //     super(props)
+    // }
 
     render() {
         const postlist = this.props.post.slice().sort((a, b) => b.postDate - a.postDate)

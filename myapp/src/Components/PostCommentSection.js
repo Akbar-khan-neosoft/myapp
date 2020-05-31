@@ -71,7 +71,7 @@ class PostCommentSection extends Component {
                             // console.log(item)
                             return (
                                 <div className="comment">
-                                    <span><b><Link to={"/profile/" + item.profileOfUser}>{item.commentBy}</Link></b> : </span> } &nbsp;&nbsp; <span>{item.comment}</span><br></br>
+                                    <span><b><Link to={"/profile/" + item.profileOfUser}>{item.commentBy}</Link></b> : </span> &nbsp;&nbsp; <span>{item.comment}</span><br></br>
                                     <span id="commenttime">{moment(item.commenttime.toDate()).fromNow()}</span>
                                 </div>
                             )

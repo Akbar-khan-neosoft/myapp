@@ -35,3 +35,20 @@
     color: red;
     font-weight: 700;
 }
+
+@media only screen and (max-width: 500px) {
+    .logincontainer{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        /* margin-top: 10%;
+        margin-bottom: 10%; */
+        /* border: 1px solid rgb(160, 137, 137); */
+        background-color: rgb(237, 240, 243);
+        /* border-radius: 16px; */
+    }
+
+    #otherlink{
+        font-size: x-small;
+    }
+}

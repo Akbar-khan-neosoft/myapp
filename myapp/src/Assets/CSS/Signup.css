@@ -12,12 +12,12 @@
     border-radius: 2%;
 }
 
-.socialregistercontainer{
+/* .socialregistercontainer{
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
     margin-top: 5%;
-}
+} */
 .formrow{
     width: 80%;
     margin-left: 10%;
@@ -26,6 +26,8 @@
 }
 .formheading{
     text-align: center;
+    font-size: xx-large;
+    font-weight: 700;
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
@@ -34,9 +36,37 @@
 }
 
 .registerbutton{
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
     margin-top: 2%;
     margin-bottom: 5%;
+}
+
+@media only screen and (max-width: 500px) {
+    .formheading{
+        text-align: center;
+        font-size: large;
+        font-weight: 700;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .formcontainer{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        background-color: rgba(43, 33, 33, 0.459);
+        /* border: 5px double rgb(228, 186, 186); */
+        border-radius: 2%;
+    }
+    .formrow{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 3%;
+    }
 }

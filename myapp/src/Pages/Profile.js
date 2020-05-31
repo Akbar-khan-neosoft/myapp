@@ -40,28 +40,28 @@ class Profile extends Component {
                     <div className="profilecontainer">
                         <div className="leftsideprofile">
                             <div className="profileheading"><h3>Personal Details</h3></div>
-                            <div className="profilepicture">{this.props.profile.gender === "male" ? <img src={male} width="80%" height="80%" /> : <img src={female} width="80%" height="80%" />}</div>
+                            <div className="profilepicture">{this.props.profile.gender === "male" ? <img src={male} width="80%" height="80%" alt="Male" /> : <img src={female} width="80%" height="80%" alt="female" />}</div>
                             <div className="profilename">
-                                <span><b>Name</b> : </span> &nbsp;&nbsp; <span>{this.props.profile.fullName}</span>
+                                <span><b>Name</b> : </span> &nbsp; <span>{this.props.profile.fullName}</span>
                             </div>
                             <div className="profilerole">
-                                <span><b>Role</b> : </span> &nbsp;&nbsp; <span>{this.props.profile.role}</span>
+                                <span><b>Role</b> : </span> &nbsp; <span>{this.props.profile.role}</span>
                             </div>
                             <div className="profilegender">
-                                <span><b>Gender</b> : </span> &nbsp;&nbsp; <span>{this.props.profile.gender}</span>
+                                <span><b>Gender</b> : </span> &nbsp; <span>{this.props.profile.gender}</span>
                             </div>
                             <div className="profileemail">
-                                <span><b>Email</b> : </span> &nbsp;&nbsp;<span>{this.props.profile.email}</span>
+                                <span><b>Email</b> : </span> &nbsp;<span>{this.props.profile.email}</span>
                             </div>
                             <div className="profilemobile">
-                                <span><b>Mobile</b> : </span> &nbsp;&nbsp;
+                                <span><b>Mobile</b> : </span> &nbsp;
                                 {(this.props.auth.uid === this.props.profile.profileId || this.props.profile.role === "ADMIN")
                                  ? <span>{this.props.profile.mobile}</span> : <span>"Hidden"</span>}
                             </div>
                             <div className="profileEditButton">
                             {this.state.showProfileEdit ?
-                                <Button type="submit" variant="contained" color="primary" style={{ marginTop: "3%" }} onClick={this.onShowProfileEdit}>My Post</Button>
-                                : <Button type="submit" variant="contained" color="primary" style={{ marginTop: "3%" }} onClick={this.onShowProfileEdit}>Edit Profile</Button>}
+                                <Button type="submit" fullWidth variant="contained" color="primary" style={{ marginTop: "3%" }} onClick={this.onShowProfileEdit}>My Post</Button>
+                                : <Button type="submit" fullWidth variant="contained" color="primary" style={{ marginTop: "3%" }} onClick={this.onShowProfileEdit}>Edit Profile</Button>}
                                 </div>
                         </div>
                         <div className="rightsideposts">

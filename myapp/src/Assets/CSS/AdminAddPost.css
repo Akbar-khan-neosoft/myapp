@@ -17,3 +17,23 @@
     background-color: rgba(43, 33, 33, 0.459);
     border: 5px double rgb(228, 186, 186);
 }
+
+.formheading{
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 700;
+}
+
+@media only screen and (max-width: 500px) {
+    .formheading{
+        text-align: center;
+        font-size: large;
+        font-weight: 700;
+    }
+
+    .adminaddpostcontainer{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}

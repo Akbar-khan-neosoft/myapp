@@ -34,13 +34,13 @@ class Homepage extends Component {
         <div className="homepagecontainer">
           <div className="topnavbar">
           <div onClick={this.onClickAdminPostHandle} className="btn">{this.state.showAdminPost ?
-                        <i class="fa fa-check-square" aria-hidden="true">&nbsp;Admin Post</i>
-                        : <i class="fa fa-square" aria-hidden="true">&nbsp;Admin Post</i>
+                        <i className="fa fa-check-square" aria-hidden="true">&nbsp;Admin Post</i>
+                        : <i className="fa fa-square" aria-hidden="true">&nbsp;Admin Post</i>
 
                     }</div>
             <div onClick={this.onClickUserPostHandle} className="btn">{this.state.showUserPost ?
-                        <i class="fa fa-check-square" aria-hidden="true">&nbsp;Student Post</i>
-                        : <i class="fa fa-square" aria-hidden="true">&nbsp;Student Post</i>
+                        <i className="fa fa-check-square" aria-hidden="true">&nbsp;Student Post</i>
+                        : <i className="fa fa-square" aria-hidden="true">&nbsp;Student Post</i>
 
                     }</div>
           </div>

@@ -92,7 +92,7 @@ class UserAddPost extends Component {
                     <div className="adminaddpostformcontainer">
 
                         <form>
-                            <div className="formheading"><h1>Add New Post</h1></div>
+                            <div className="formheading">Add New Post</div>
                             {/* <div className="formrow">
                                 <FormControl fullWidth>
                                     <TextField

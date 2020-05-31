@@ -63,6 +63,25 @@
     padding-left: 2%;
 }
 
+@media only screen and (max-width: 400px) {
+
+    .postdetailcard{
+        background-color:white;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 10%;
+        margin-bottom: 15%;
+        padding-left: 3%;
+        padding-right: 3%;
+        padding-top: 0.5%;
+        padding-bottom: 2%;
+        border-radius: 25px;
+       
+    
+    }
+}
+
 
 
 
